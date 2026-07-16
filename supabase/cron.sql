@@ -1,0 +1,10 @@
+-- =========================================================
+-- supabase/cron.sql
+-- =========================================================
+-- STUB — Phase 0 scaffold only.
+--
+-- The pg_cron schedule that invokes dispatch-callbacks every 10 minutes
+-- (via pg_net's net.http_post) is specified verbatim in
+-- docs/AI_BUILD_GUIDE.md §7 and lands in Phase 3. Run it once after
+-- dispatch-callbacks is deployed, with the pg_cron and pg_net extensions
+-- enabled under Database > Extensions.

@@ -1,0 +1,19 @@
+{
+  "name": "realestate-ai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Ello AI Real Estate Voice Agent Ecosystem — monorepo",
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@9.15.9",
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "dev:website": "pnpm --filter @realestate-ai/website dev",
+    "dev:dashboard": "pnpm --filter @realestate-ai/dashboard dev",
+    "dev:admin": "pnpm --filter @realestate-ai/admin dev"
+  }
+}

@@ -1,0 +1,12 @@
+-- =========================================================
+-- supabase/migrations/0001_init.sql
+-- =========================================================
+-- STUB — Phase 0 scaffold only.
+--
+-- The complete first migration (pgcrypto extension, the 8 tables:
+-- businesses, project_types, leads, customers, calls, call_summaries,
+-- scheduled_callbacks, agent_prompts; all indexes; starter RLS policies;
+-- and the 12 seeded real-estate project types) is specified verbatim in
+-- docs/AI_BUILD_GUIDE.md §5 and lands in Phase 1.
+--
+-- Do not add tables/columns beyond what §5 specifies.
