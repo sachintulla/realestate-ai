@@ -16,6 +16,9 @@ build/
 # vercel
 .vercel
 
+# claude code — local, per-user settings (launch.json IS shared)
+.claude/settings.local.json
+
 # misc
 .DS_Store
 *.pem
