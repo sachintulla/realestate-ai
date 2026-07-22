@@ -58,6 +58,9 @@ export async function POST(req: NextRequest) {
       project_type_id, scheduled_datetime, language_preference,
       custom_description: message ?? null,
       status: "new",
+      // Compliance (§12): record when consent was given. `consent` is already
+      // validated as true above, so this stamps the moment of submission.
+      consent_given_at: new Date().toISOString(),
     })
     .select()
     .single();

@@ -46,6 +46,15 @@ serve(async (req) => {
       .from("customers").select("*").eq("id", customer_id).single();
     if (!customer) throw new Error("Customer not found");
 
+    // Compliance (§12): never dial a customer who has opted out. Refuse before
+    // contacting Getello or logging a call.
+    if (customer.opt_out) {
+      return new Response(
+        JSON.stringify({ ok: false, skipped: true, reason: "customer_opted_out" }),
+        { status: 200, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
     const { data: lead } = lead_id
       ? await supabase.from("leads").select("*, project_types(*)").eq("id", lead_id).single()
       : { data: null };
@@ -96,6 +105,12 @@ serve(async (req) => {
     } else {
       context_data.is_repeat_call = false;
     }
+
+    // TODO(compliance, §12): DND / DLT registration check.
+    // Before production outbound dialing, verify the business's DND scrubbing
+    // and DLT/PE telemarketer registration category. Deliberately NOT
+    // implemented yet — this needs a business decision first.
+    // See AI_BUILD_GUIDE.md §12 (DND / DLT registration).
 
     // 5. Call Getello
     const resp = await fetch(
