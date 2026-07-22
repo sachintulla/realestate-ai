@@ -1,0 +1,15 @@
+-- =========================================================
+-- supabase/migrations/0004_project_types_grants.sql
+-- =========================================================
+-- project_types holds global templates (business_id IS NULL) meant to be
+-- publicly readable for the website's Contact-Us dropdown (§9). RLS is
+-- intentionally left DISABLED on this table (§5 / Phase 1 decision), but
+-- PostgREST roles still need an explicit table grant — RLS-off does NOT imply
+-- readable. Without this, the anon / publishable key gets
+-- "permission denied for table project_types" (SQLSTATE 42501).
+--
+-- Trade-off: anon can then read ALL project_types rows (incl. any per-business
+-- customisations), not just global templates. Acceptable for a global-template
+-- MVP; to scope it tighter, enable RLS with a read policy for
+-- (business_id is null) instead.
+grant select on table project_types to anon, authenticated;
